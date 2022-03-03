@@ -1,7 +1,7 @@
 This is my repository for working through the exercises in the LinkedIn Learning course, [Python: Working with Predictive Analytics by Isil Berkun](https://www.linkedin.com/learning/python-working-with-predictive-analytics/)
 
 However, instead of using Anaconda, I used Visual Studio Code with the Python extension, following the YouTube setup guide by [Aditya Thakur](https://www.youtube.com/watch?v=ThU13tikHQw)
-<<<<<<< HEAD
+
 
 ## Create a Virtual Environment to allow import of Python modules
 
@@ -41,6 +41,11 @@ venv\Scripts\activate
 Alternatively, use Ctrl + Shift + 
 
 
+### Add Virtual Environment to .gitignore
+Add virtual environment to .gitignore
+The modules take up a lot of space, so create a new .gitignore file in the directory and add venv (or whatever your virtual environment’s folder name is to the file).
+
+
 ### Import Python modules
 
 After performing the steps above, you can now install Python modules
@@ -60,5 +65,3 @@ pip install seaborn
 ```
 
 Once done, click Run to render your Python script.
-=======
->>>>>>> parent of b7a0527 (Installed venv Virtual Environment)
