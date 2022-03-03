@@ -5,7 +5,7 @@ However, instead of using Anaconda, I used Visual Studio Code with the Python ex
 
 ## Create a Virtual Environment to allow import of Python modules
 
-Create a virtual terminal by opening Terminal from Visual Studio Code, using the following command:
+Create a virtual terminal by opening cmd terminal from Visual Studio Code, using the following command:
 
 ```
 python -m venv yourpythonprojectfolder\venv
