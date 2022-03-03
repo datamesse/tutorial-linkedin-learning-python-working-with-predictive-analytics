@@ -42,13 +42,25 @@ Alternatively, use Ctrl + Shift +
 
 
 ### Add Virtual Environment to .gitignore
-Add virtual environment to .gitignore
-The modules take up a lot of space, so create a new .gitignore file in the directory and add venv (or whatever your virtual environment’s folder name is to the file).
+The modules take up a lot of space, so create a new .gitignore file in the directory and add venv (or whatever your virtual environment’s folder name is, inside the file).
+
+
+### Deactivate and delete Virtual Environment
+
+```
+deactivate
+```
+
+Assuming the virtual environment was named as folder venv, otherwise replace with the folder name
+
+```
+rm -r venv
+```
 
 
 ### Import Python modules
 
-After performing the steps above, you can now install Python modules
+After performing the steps above (minus deactivting then deleting the environment), you can now install Python modules.
 
 ```
 pip install pythonmodulename
