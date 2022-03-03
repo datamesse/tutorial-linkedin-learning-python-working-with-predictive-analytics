@@ -69,7 +69,6 @@ pip install pythonmodulename
 
 For example:
 ```
-pip install matplotlib
 pip install pandas
 pip install numpy
 pip install scikit-learn

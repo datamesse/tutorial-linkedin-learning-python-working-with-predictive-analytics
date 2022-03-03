@@ -1,7 +1,13 @@
-import matplotlib.pyplot as plt
+"""
+Python libraries and data import
+"""
 
-x = [24,25,26]
-y = [23,24,25]
+import pandas as pd
+import numpy as np
 
-plt.plot(x,y)
-plt.show()
+from sklearn.model_selection import train_test_split
+from sklearn.impute import SimpleImputer
+
+import matplotlib as plt
+
+data = pd.read_csv()
