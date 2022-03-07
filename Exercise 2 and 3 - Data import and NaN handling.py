@@ -44,8 +44,8 @@ to indicate no columns have NaN values
 Option 1. Substitute NaN values with the mean for the column (using Pandas)
 inplace = True will make changes to the data frame
 """
-# data['bmi'].fillna(data['bmi'].mean(), inplace = True)
-
+data['bmi'].fillna(data['bmi'].mean(), inplace = True)
+print(data.head(15))
 
 """
 Option 2. Drop the whole column
