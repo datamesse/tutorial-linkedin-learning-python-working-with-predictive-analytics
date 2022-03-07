@@ -78,6 +78,8 @@ https://numpy.org/doc/stable/reference/generated/numpy.reshape.html
 # imputer = SimpleImputer(strategy='mean')
 # imputer.fit(data['bmi'].values.reshape(-1, 1))
 # data['bmi'] = imputer.transform(data['bmi'].values.reshape(-1, 1))
+# print(data.head(15))
+
 
 
 """
