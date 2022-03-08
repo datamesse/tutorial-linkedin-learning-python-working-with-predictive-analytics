@@ -1,20 +1,6 @@
 """
-Python libraries and data import
+Converting categorical to numerical data
 """
-
-import pandas as pd
-import numpy as np
-
-from sklearn.model_selection import train_test_split
-from sklearn.impute import SimpleImputer
-
-import matplotlib as plt
-
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.preprocessing import LabelEncoder
-
-data = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/insurance.csv")
-
 
 """
 Categorical encoding to numbers
@@ -30,6 +16,20 @@ Note: In live, there may be a different number of unique values for a field comp
 In which case, we fit the encoder function only to the training data.
 """
 
+
+
+import pandas as pd
+import numpy as np
+
+from sklearn.model_selection import train_test_split
+from sklearn.impute import SimpleImputer
+
+import matplotlib as plt
+
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import LabelEncoder
+
+data = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/insurance.csv")
 
 
 """
