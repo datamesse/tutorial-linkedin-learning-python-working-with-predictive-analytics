@@ -77,3 +77,12 @@ pip install seaborn
 ```
 
 Once done, click Run to render your Python script.
+
+
+### Clearing terminal
+
+As per this [stack overflow question](https://stackoverflow.com/questions/48713604/how-can-i-clear-the-terminal-in-visual-studio-code), Visual Studdio Code has removed the hotkey shortcut for clearing console, which is going to be regularly used for trial-and-error coding and displaying results.
+
+From Visual Studio Code navigate to File > Preferences > Keyboard Shortcuts, then search for the command *workbench.action.terminal.clear*, and apply your keybinding.
+
+

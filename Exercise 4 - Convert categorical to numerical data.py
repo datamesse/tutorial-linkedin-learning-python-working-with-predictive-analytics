@@ -29,8 +29,9 @@ import matplotlib as plt
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import LabelEncoder
 
-data = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/insurance.csv")
+# data = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/insurance.csv")
 
+data = pd.read_csv("./data/insurance.csv")
 
 """
 Option 1. Map each category to a differet function integer i.e. label encoding using Pandas
@@ -38,14 +39,16 @@ create series for pandas
 """
 
 region = data["region"] # series 
-region_encoded, region_categories = pd.factorize(region)
-factor_region_mapping = dict(zip(region_categories, region_encoded)) #mapping of encoded numbers and original categories. 
+# region_encoded, region_categories = pd.factorize(region)
+# factor_region_mapping = dict(zip(region_categories, region_encoded)) #mapping of encoded numbers and original categories. 
 
-print("Pandas factorize function for label encoding with series")  
-print(region[:10]) #original version 
-print(region_categories) #list of categories
-print(region_encoded[:10]) #encoded numbers for categories 
-print(factor_region_mapping) # print factor mapping
+
+
+# print("Pandas factorize function for label encoding with series")  
+# print(region[:10]) #original version ## appears to print out first 10 results CHECK
+# print(region_categories) #list of categories
+# print(region_encoded[:10]) #encoded numbers for categories 
+# print(factor_region_mapping) # print factor mapping
 
 
 
