@@ -29,17 +29,19 @@ import matplotlib as plt
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import LabelEncoder
 
-# data = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/insurance.csv")
-
-data = pd.read_csv("./data/insurance.csv")
+data = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/insurance.csv")
 
 """
 Option 1. Map each category to a differet function integer i.e. label encoding using Pandas
 create series for pandas
 """
 
-region = data["region"] # series 
-# region_encoded, region_categories = pd.factorize(region)
+region = data["region"] # retrieves the entire region column by itself
+region_encoded, region_categories = pd.factorize(region)
+
+print(region_encoded)
+
+
 # factor_region_mapping = dict(zip(region_categories, region_encoded)) #mapping of encoded numbers and original categories. 
 
 
