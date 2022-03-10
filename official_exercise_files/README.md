@@ -1,0 +1,1 @@
+These are the completed exercise files from the LinkedIn course that I am trying to study, and annotate into my main repository so it's easier for a beginner like me to understand.

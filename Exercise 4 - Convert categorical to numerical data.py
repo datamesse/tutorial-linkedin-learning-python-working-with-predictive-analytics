@@ -33,14 +33,19 @@ data = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedi
 
 """
 Option 1. Map each category to a differet function integer i.e. label encoding using Pandas
-create series for pandas
+
+https://pandas.pydata.org/docs/reference/api/pandas.factorize.html
+.factorize creates an array substituting each categorical value as an integer
+structure
+array of integers, unique categorical values = pd.factorize(dataset)
+e.g. region_encoded, region_categories = pd.factorize(region)
 """
 
 region = data["region"] # retrieves the entire region column by itself
 region_encoded, region_categories = pd.factorize(region)
 
-print(region_encoded)
-
+#print(region_encoded)
+print(region_categories)
 
 # factor_region_mapping = dict(zip(region_categories, region_encoded)) #mapping of encoded numbers and original categories. 
 
