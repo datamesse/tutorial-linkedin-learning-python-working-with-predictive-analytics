@@ -64,7 +64,7 @@ print(count_nan[count_nan > 0])
 
 figure, ax = plt.subplots(4,2, figsize=(12,24))
 
-#See the distrubution of the data
+#See the distribution of the data
 sns.distplot(data['charges'],ax= ax[0,0])
 sns.distplot(data['age'],ax=ax[0,1])
 sns.distplot(data['bmi'],ax= ax[1,0])
