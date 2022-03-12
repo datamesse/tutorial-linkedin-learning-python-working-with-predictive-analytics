@@ -35,13 +35,13 @@ data = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedi
 Option 1. Map each category to a differet function integer i.e. label encoding using Pandas
 
 https://pandas.pydata.org/docs/reference/api/pandas.factorize.html
-.factorize creates an array substituting each categorical value as an integer
+.factorize() creates an array substituting each categorical value as an integer
 structure
 array of integers, unique categorical values = pd.factorize(dataset)
 e.g. region_encoded, region_categories = pd.factorize(region)
 
 https://realpython.com/python-zip-function/
-.zip pairs elements from 2 or more arrays with each otther
+.zip() pairs elements from 2 or more arrays with each otther
 e.g. 
 region_categories = ['southwest', 'southeast','northwest','northeast']
 region_encoded = [0,1,1,2]
@@ -50,22 +50,18 @@ for l, n in zip(region_categories, region_encoded):
      print(f'Number: {n}')
 End result is [('southwest', 0), ('southeast', 1), ('northwest', 1),('northeast',2)]
 
-
+https://www.w3schools.com/python/ref_func_dict.asp
+.dict() creates a dictionary,  which stores data values in key:value pairs
 """
 
-region = data["region"] # retrieves the entire region column by itself
-region_encoded, region_categories = pd.factorize(region)
-# factor_region_mapping = dict(zip(region_categories, region_encoded)) #mapping of encoded numbers and original categories. 
+# region = data["region"] # retrieves the entire region column by itself
+# region_encoded, region_categories = pd.factorize(region)
+# factor_region_mapping = dict(zip(region_categories, region_encoded))
 
-
-region_categories = ['southwest', 'southeast','northwest','northeast']
-region_encoded = [0,1,1,2]
-for l, n in zip(region_categories, region_encoded):
-     print(f'Category: {l}')
-     print(f'Number: {n}')
 
 # print("Pandas factorize function for label encoding with series")  
-# print(region[:10]) #original version 
-# print(region_categories) #list of categories
-# print(region_encoded[:10]) #encoded numbers for categories 
-# print(factor_region_mapping) # print factor mapping
+# print(region[:10]) # first 10 rows of original data 
+# print(region_categories) # list of unique category values
+# print(region_encoded[:10]) # first 10 encoded numbers for categories
+# print(factor_region_mapping) # dictionary mapping of numbers with categorical values
+
