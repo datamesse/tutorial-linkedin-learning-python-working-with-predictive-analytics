@@ -31,6 +31,3 @@ Matplotlib for data visualisation
 The exercise files use distplot which...:
 `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
 """
-
-import matplotlib.pyplot as plt 
-
