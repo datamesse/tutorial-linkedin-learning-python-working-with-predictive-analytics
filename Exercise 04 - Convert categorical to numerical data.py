@@ -94,21 +94,19 @@ ndarray is a (usually fixed-size) multi-dimensional container of items of the sa
 """
 
 #create ndarray for label encodoing (sklearn)
-sex = data.iloc[:,1:2].values
+gender = data.iloc[:,1:2].values
 smoker = data.iloc[:,4:5].values
 
-#label encoder = le
 
-
-## le for sex
+## le for gender
 le = LabelEncoder()
-sex[:,0] = le.fit_transform(sex[:,0])
-sex = pd.DataFrame(sex)
-sex.columns = ['sex']
-le_sex_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
+gender[:,0] = le.fit_transform(gender[:,0])
+gender = pd.DataFrame(gender)
+gender.columns = ['sex']
+le_gender_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
 print("Sklearn label encoder results for sex:")
-print(le_sex_mapping)
-print(sex[:10])
+print(le_gender_mapping)
+print(gender[:10])
 
 ## le for smoker
 le = LabelEncoder()
