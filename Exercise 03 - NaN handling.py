@@ -50,7 +50,11 @@ print(data.head(15))
 """
 Option 2. Drop the whole column
 """
-# data.drop('bmi', axis = 1, inplace = True)
+
+"""
+data.drop('bmi', axis = 1, inplace = True)
+"""
+
 
 
 """
@@ -62,9 +66,12 @@ dataframename.dropna(axis='columns')
 .reset_index(drop=True) removes the existing index and places a new one in beginning from 0
 """
 
-# data.dropna(inplace=True)
-# data.reset_index(drop=True, inplace=True)
-# print(data.head(15))
+"""
+data.dropna(inplace=True)
+data.reset_index(drop=True, inplace=True)
+print(data.head(15))
+"""
+
 
 
 """
@@ -75,10 +82,12 @@ https://stackoverflow.com/questions/46691596/why-does-sklearn-imputer-need-to-fi
 https://numpy.org/doc/stable/reference/generated/numpy.reshape.html
 """
 
-# imputer = SimpleImputer(strategy='mean')
-# imputer.fit(data['bmi'].values.reshape(-1, 1))
-# data['bmi'] = imputer.transform(data['bmi'].values.reshape(-1, 1))
-# print(data.head(15))
+"""
+imputer = SimpleImputer(strategy='mean')
+imputer.fit(data['bmi'].values.reshape(-1, 1))
+data['bmi'] = imputer.transform(data['bmi'].values.reshape(-1, 1))
+print(data.head(15))
+"""
 
 
 

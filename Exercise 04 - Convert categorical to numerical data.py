@@ -124,6 +124,7 @@ gender = data.iloc[:,1:2].values
 smoker = data.iloc[:,4:5].values
 
 print(gender)
+print(smoker)
 
 """
 ## le for gender
