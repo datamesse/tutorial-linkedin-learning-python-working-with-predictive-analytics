@@ -106,15 +106,27 @@ print(region_encoded) #encoded numbers for categories
 """
 Option 3. Label encoding using sklearn
 Conceptually, an ndarray is a (usually fixed-size) multi-dimensional container of items of the same type and size
+
 https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html
 https://www.youtube.com/watch?v=xvpNA7bC8cs by Data School
-.iloc[] 
-iloc[rowsbyintger,columnsbyindex]
-: means all
-.iloc[0, :]   means all columns for row 0
-.iloc[[0,2,4], :]   means all columns for rows 0, 2, and 4
-.iloc[0:4, :]   means all columns for rows between 0 to 4 inclusive
-.iloc[:, 'City':'State']   means columns between Coty and State inclusive for all rows
+.loc[] for selecting row and column combinations
+   .loc[rowsbyintger,columnsbyindex]
+   : means all
+   .loc[0, :]   means all columns for row 0
+   .loc[[0,2,4], :]   means all columns for rows 0, 2, and 4
+   .loc[0:4, :]   means all columns for rows between 0 to 4 inclusive
+   .loc[:, 'City':'State']   means columns between City and State inclusive for all rows
+
+.loc can be used with a Boolean condition
+   .loc[dataframe.columnname=='stringvalue', :]   means all columns for rows whose columnname is stringvalue
+
+.iloc[] for selecting row and colum combintations by integer position (0 start)
+behaves similarly to .loc, except the integer after : is excluded
+   examples
+   .iloc[:, 0:4]   means columns 0, 1, 2, and 3 for all rows
+   .iloc[0:3, :]   means all columns for rows 0, 1, and 2
+
+
 """
 
 
