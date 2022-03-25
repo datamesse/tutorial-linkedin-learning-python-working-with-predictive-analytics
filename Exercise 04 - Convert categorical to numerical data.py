@@ -107,9 +107,14 @@ print(region_encoded) #encoded numbers for categories
 Option 3. Label encoding using sklearn
 Conceptually, an ndarray is a (usually fixed-size) multi-dimensional container of items of the same type and size
 https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html
+https://www.youtube.com/watch?v=xvpNA7bC8cs by Data School
 .iloc[] 
-
-
+iloc[rowsbyintger,columnsbyindex]
+: means all
+.iloc[0, :]   means all columns for row 0
+.iloc[[0,2,4], :]   means all columns for rows 0, 2, and 4
+.iloc[0:4, :]   means all columns for rows between 0 to 4 inclusive
+.iloc[:, 'City':'State']   means columns between Coty and State inclusive for all rows
 """
 
 
