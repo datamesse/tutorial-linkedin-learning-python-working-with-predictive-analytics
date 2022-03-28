@@ -107,6 +107,8 @@ print(region_encoded) #encoded numbers for categories
 Option 3. Label encoding using sklearn
 Conceptually, an ndarray is a (usually fixed-size) multi-dimensional container of items of the same type and size
 
+https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html
+
 https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html
 https://www.youtube.com/watch?v=xvpNA7bC8cs by Data School
 .loc[] for selecting row and column combinations
@@ -126,6 +128,8 @@ behaves similarly to .loc, except the integer after : is excluded
    .iloc[:, 0:4]   means columns 0, 1, 2, and 3 for all rows
    .iloc[0:3, :]   means all columns for rows 0, 1, and 2
 
+https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.values.html
+pandas .values removes axes labels i.e. row number and column name
 
 """
 
@@ -140,20 +144,19 @@ from sklearn.preprocessing import LabelEncoder
 gender = data.iloc[:,1:2].values
 smoker = data.iloc[:,4:5].values
 
-print(gender)
-print(smoker)
-
-"""
 ## le for gender
 le = LabelEncoder()
 gender[:,0] = le.fit_transform(gender[:,0])
+
+
+
+"""
 gender = pd.DataFrame(gender)
 gender.columns = ['sex']
 le_gender_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
 print("Sklearn label encoder results for gender:")
 print(le_gender_mapping)
-print(gender[:10])
-
+print(gender[:10]) # prints first 10 rows
 
 ## le for smoker
 le = LabelEncoder()
