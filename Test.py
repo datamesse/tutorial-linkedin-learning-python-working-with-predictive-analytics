@@ -2,7 +2,7 @@
 
 import pandas as pd
 import numpy as np
-import hts as hts
+import hts
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -15,7 +15,7 @@ plt.style.use('seaborn')
 plt.rcParams["figure.figsize"] = (16, 8)
 
 # load the data 
-df = pd.read_csv("../data/tourism.csv") \
+df = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/tourism.csv") \
        .drop(columns=["Unnamed: 0"])
 
 # lowercase the column names
