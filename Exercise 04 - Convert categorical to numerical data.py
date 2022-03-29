@@ -122,7 +122,7 @@ https://www.youtube.com/watch?v=xvpNA7bC8cs by Data School
 .loc can be used with a Boolean condition
    .loc[dataframe.columnname=='stringvalue', :]   means all columns for rows whose columnname is stringvalue
 
-.iloc[] for selecting row and colum combintations by integer position (0 start)
+.iloc[] for selecting row and column combintations by integer position (0 start)
 behaves similarly to .loc, except the integer after : is excluded
    examples
    .iloc[:, 0:4]   means columns 0, 1, 2, and 3 for all rows
@@ -130,6 +130,9 @@ behaves similarly to .loc, except the integer after : is excluded
 
 https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.values.html
 pandas .values removes axes labels i.e. row number and column name
+
+
+
 
 """
 
@@ -148,7 +151,7 @@ smoker = data.iloc[:,4:5].values
 le = LabelEncoder()
 gender[:,0] = le.fit_transform(gender[:,0])
 
-
+print(smoker)
 
 """
 gender = pd.DataFrame(gender)

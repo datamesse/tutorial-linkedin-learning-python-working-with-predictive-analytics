@@ -15,7 +15,7 @@ plt.style.use('seaborn')
 plt.rcParams["figure.figsize"] = (16, 8)
 
 # load the data 
-df = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/tourism.csv") \
+df = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/seat_utilisation.csv") \
        .drop(columns=["Unnamed: 0"])
 
 # lowercase the column names
