@@ -1,5 +1,8 @@
 """
 Converting categorical to numerical data
+
+Original exercise file by : https://www.linkedin.com/learning/instructors/isil-berkun
+Annotated by me so that I can understand what's happening at each step
 """
 
 """
@@ -137,7 +140,7 @@ pandas .values removes axes labels i.e. row number and column name
 """
 
 
-#"""
+"""
 import pandas as pd
 data = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/insurance.csv")
 
@@ -151,9 +154,9 @@ smoker = data.iloc[:,4:5].values
 le = LabelEncoder()
 gender[:,0] = le.fit_transform(gender[:,0])
 
-print(smoker)
+print(gender) # continue analysing code from here
 
-"""
+
 gender = pd.DataFrame(gender)
 gender.columns = ['sex']
 le_gender_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
@@ -171,7 +174,36 @@ print("Sklearn label encoder results for smoker:")
 print(le_smoker_mapping)
 print(smoker[:10])
 
+"""
 
 
 
-#"""
+
+
+
+
+"""
+Option 4. One hot encoding using sklearn
+
+Honestly, Option 2 seems simpler.
+"""
+
+"""
+import pandas as pd
+data = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/insurance.csv")
+
+from sklearn.preprocessing import OneHotEncoder
+
+#create ndarray for one hot encodoing (sklearn)
+region = data.iloc[:,5:6].values #ndarray
+
+## ohe for region
+ohe = OneHotEncoder() 
+
+region = ohe.fit_transform(region).toarray()
+region = pd.DataFrame(region)
+region.columns = ['northeast', 'northwest', 'southeast', 'southwest']
+print("Sklearn one hot encoder results for region:")   
+print(region[:10])
+
+"""

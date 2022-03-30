@@ -1,5 +1,8 @@
 """
 Python libraries, data import, and NaN Handling
+
+Original exercise file by : https://www.linkedin.com/learning/instructors/isil-berkun
+Annotated by me so that I can understand what's happening at each step
 """
 
 import pandas as pd
