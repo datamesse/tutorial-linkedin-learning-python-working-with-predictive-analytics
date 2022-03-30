@@ -128,3 +128,30 @@ poly_lr.score(X_test, y_test)))
 """
 
 
+
+"""
+SUPPORT VECTOR REGRESSION (SVR)
+highly sensitive to outliers, so it is essential to apply scaling before using this method, i.e. feature scaling
+"""
+
+from sklearn.svm import SVR
+
+svr = SVR(kernel='linear', C = 300)
+
+#test train split
+X_train, X_test, y_train, y_test = train_test_split(X_final, y_final, test_size = 0.33, random_state = 0 )
+
+#define a standard scaler (fit transform on train, fit only on test)
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train.astype(float))
+X_test= sc.transform(X_test.astype(float))
+
+#fit model
+svr = svr.fit(X_train,y_train.values.ravel())
+y_train_pred = svr.predict(X_train)
+y_test_pred = svr.predict(X_test)
+
+#print score
+print('svr train score %.3f, svr test score: %.3f' % (
+svr.score(X_train,y_train),
+svr.score(X_test, y_test)))
