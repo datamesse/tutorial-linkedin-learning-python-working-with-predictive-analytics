@@ -13,6 +13,18 @@ Annotated by me so that I can understand what's happening at each step
 import pandas as pd
 data = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/insurance.csv")
 
+
+from sklearn.impute import SimpleImputer
+
+# data.drop('bmi', axis = 1, inplace = True)
+data.dropna(inplace=True)
+data.reset_index(drop=True, inplace=True)
+imputer = SimpleImputer(strategy='mean')
+imputer.fit(data['bmi'].values.reshape(-1, 1))
+data['bmi'] = imputer.transform(data['bmi'].values.reshape(-1, 1))
+data['bmi'].fillna(data['bmi'].mean(), inplace = True)
+
+
 from sklearn.preprocessing import LabelEncoder
 
 #create ndarray for label encodoing (sklearn)
@@ -59,5 +71,61 @@ X_test= s_scaler.transform(X_test.astype(float))
 
 # ========================================================================================================
 
+
+"""
+MULTIPLE LINEAR REGRESSION
+explains dependent y based on multiple independent x variables
+"""
+
+"""
+from sklearn.linear_model import LinearRegression
+
+lr = LinearRegression().fit(X_train,y_train)
+y_train_pred = lr.predict(X_train)
+y_test_pred = lr.predict(X_test)
+
+# getting the ccoefficients and intercept
+print("lr.coef_: {}".format(lr.coef_))
+print("lr.intercept_: {}".format(lr.intercept_))
+print('lr train score %.3f, lr test score: %.3f' % (
+lr.score(X_train,y_train),
+lr.score(X_test, y_test)))
+"""
+
+
+
+"""
+POLYNOMIAL REGRESSION
+still fitting a linear model, but the features are treated as polynomial
+scaling is applied to x data, i.e. fit and transform the x train data, but only transform the x test data
+try adjusting the degree to explore different scenarios
+when dealing with a lot of features, it calls for more need of feature engineering, transformation, and selection
+"""
+
+"""
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+
+poly = PolynomialFeatures (degree = 2)
+X_poly = poly.fit_transform(X_final)
+
+X_train,X_test,y_train,y_test = train_test_split(X_poly,y_final, test_size = 0.33, random_state = 0)
+
+#standard scaler (fit transform on train, fit only on test)
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train.astype(float))
+X_test= sc.transform(X_test.astype(float))
+
+#fit model
+poly_lr = LinearRegression().fit(X_train,y_train)
+
+y_train_pred = poly_lr.predict(X_train)
+y_test_pred = poly_lr.predict(X_test)
+
+#print score
+print('poly train score %.3f, poly test score: %.3f' % (
+poly_lr.score(X_train,y_train),
+poly_lr.score(X_test, y_test)))
+"""
 
 
