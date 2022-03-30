@@ -99,7 +99,6 @@ POLYNOMIAL REGRESSION
 still fitting a linear model, but the features are treated as polynomial
 scaling is applied to x data, i.e. fit and transform the x train data, but only transform the x test data
 try adjusting the degree to explore different scenarios
-when dealing with a lot of features, it calls for more need of feature engineering, transformation, and selection
 """
 
 """
