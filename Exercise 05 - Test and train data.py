@@ -28,9 +28,6 @@ gender[:,0] = le.fit_transform(gender[:,0])
 gender = pd.DataFrame(gender)
 gender.columns = ['sex']
 le_gender_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
-print("Sklearn label encoder results for gender:")
-print(le_gender_mapping)
-print(gender[:10])
 
 ## le for smoker
 le = LabelEncoder()
@@ -38,9 +35,6 @@ smoker[:,0] = le.fit_transform(smoker[:,0])
 smoker = pd.DataFrame(smoker)
 smoker.columns = ['smoker']
 le_smoker_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
-print("Sklearn label encoder results for smoker:")
-print(le_smoker_mapping)
-print(smoker[:10])
 
 from sklearn.preprocessing import OneHotEncoder
 
@@ -49,8 +43,7 @@ ohe = OneHotEncoder()
 region = ohe.fit_transform(region).toarray()
 region = pd.DataFrame(region)
 region.columns = ['northeast', 'northwest', 'southeast', 'southwest']
-print("Sklearn one hot encoder results for region:")   
-print(region[:10])
+
 
 
 # ========================================================================================================

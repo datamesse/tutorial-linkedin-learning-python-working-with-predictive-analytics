@@ -1,15 +1,10 @@
 """
-Feature scaling is used to help prevent the features with larger magnitudes from domniating the prediction model
-
-Normalisation and standardisation are typically applied to the x variables
-
-Normalisation (a.k.a min-max scaling)
-z = (x - min(x)) ÷ (max(x) - min(x))
-Values are rescaled to be between 0 and 1, unless we define a different future range using the hyperparameter. Affected by outliers.
-
-Standardisation
-z = (x - mean) ÷ standard deviation
-No specific range trying to stay in. Less affected by outliers.
+Common regression models (used to predict numerical values)
+• Multiple linear regression
+• Polynomial regression
+• Support Vector Regression (SVM)
+• Decision tree
+• Random forest regression
 
 Original exercise file by : https://www.linkedin.com/learning/instructors/isil-berkun
 Annotated by me so that I can understand what's happening at each step
@@ -55,36 +50,14 @@ from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(X_final, y_final, test_size = 0.33, random_state = 0 )
 
+from sklearn.preprocessing import StandardScaler
+s_scaler = StandardScaler()
+X_train = s_scaler.fit_transform(X_train.astype(float))
+X_test= s_scaler.transform(X_test.astype(float))
+
 
 
 # ========================================================================================================
 
 
 
-"""
-In original exercise files numpy's np.float is used, but it has since been deprecated as float is now builtint
-
-Normalising the train, fit on test???
-"""
-
-"""
-from sklearn.preprocessing import MinMaxScaler
-
-n_scaler = MinMaxScaler()
-X_train = n_scaler.fit_transform(X_train.astype(float))
-X_test= n_scaler.transform(X_test.astype(float))
-
-print(X_train[:10])
-print(X_test[:10])
-"""
-
-"""
-Standardising the train data, fi on test???
-"""
-from sklearn.preprocessing import StandardScaler
-s_scaler = StandardScaler()
-X_train = s_scaler.fit_transform(X_train.astype(float))
-X_test= s_scaler.transform(X_test.astype(float))
-
-print(X_train[:10])
-print(X_test[:10])

@@ -140,7 +140,7 @@ pandas .values removes axes labels i.e. row number and column name
 """
 
 
-"""
+
 import pandas as pd
 data = pd.read_csv("https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/insurance.csv")
 
@@ -174,7 +174,7 @@ print("Sklearn label encoder results for smoker:")
 print(le_smoker_mapping)
 print(smoker[:10])
 
-"""
+
 
 
 
