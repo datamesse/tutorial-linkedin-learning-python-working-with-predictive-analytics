@@ -165,6 +165,7 @@ DECISION TREE REGRESSION a.k.a. classification and regression trace (CART)
 Weakness of decision trees is that they tend to “overfit the model” i.e. they train high but test poor i.e. the model cannot be generalised enough for new data
 """
 
+"""
 from sklearn.tree import DecisionTreeRegressor
 
 dt = DecisionTreeRegressor(random_state=0)
@@ -186,9 +187,48 @@ y_test_pred = dt.predict(X_test)
 print('dt train score %.3f, dt test score: %.3f' % (
 dt.score(X_train,y_train),
 dt.score(X_test, y_test)))
+"""
 
 
 
+"""
+RANDOM FOREST REGRESSION
+bags data into smaller samples and runs a different model for each sample, then aggregates the collective
+i.e. a collection of decision trees
+define the regressor with parameters
+n_estimators is the number of trees
+criterion is the feature selection criteria, 'mse' is the default which is mean squared error
+n_jobs is the number of jobs to run in parallel for both fit and predict, -1 means use all processors
+
+more parameters for the randomforestregressor can be found here
+https://scikit-learn.org/stable
+"""
+
+"""
+from sklearn.ensemble import RandomForestRegressor
+
+forest = RandomForestRegressor(n_estimators = 100,
+                              criterion = 'mse',
+                              random_state = 1,
+                              n_jobs = -1)
+#test train split
+X_train, X_test, y_train, y_test = train_test_split(X_final, y_final, test_size = 0.33, random_state = 0 )
+
+#standard scaler (fit transform on train, fit only on test)
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train.astype(float))
+X_test= sc.transform(X_test.astype(float))
+
+#fit model
+forest.fit(X_train,y_train.values.ravel())
+y_train_pred = forest.predict(X_train)
+y_test_pred = forest.predict(X_test)
+
+#print score
+print('forest train score %.3f, forest test score: %.3f' % (
+forest.score(X_train,y_train),
+forest.score(X_test, y_test)))
+"""
 
 
 
