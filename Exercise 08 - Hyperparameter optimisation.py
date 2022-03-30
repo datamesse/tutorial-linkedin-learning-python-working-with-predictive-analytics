@@ -1,10 +1,5 @@
 """
-Common regression models (used to predict numerical values)
-• Multiple linear regression
-• Polynomial regression
-• Support Vector Regression (SVM)
-• Decision tree
-• Random forest regression
+
 
 Original exercise file by : https://www.linkedin.com/learning/instructors/isil-berkun
 Annotated by me so that I can understand what's happening at each step
@@ -67,9 +62,6 @@ s_scaler = StandardScaler()
 X_train = s_scaler.fit_transform(X_train.astype(float))
 X_test= s_scaler.transform(X_test.astype(float))
 
-
-
-# ========================================================================================================
 
 
 """
@@ -230,4 +222,57 @@ forest.score(X_test, y_test)))
 
 
 
+# ========================================================================================================
 
+
+"""
+HYPERPARAMETER OPTIMISATION
+custom function print_best_params prints out the optimum parameters
+define a search space for SVR in the dictionary, containing kernel function, degree, C, and epsilon
+2 kernels are provided, linear and poly
+C is the penalty parameter of the error term
+epsilon defines a margin of tolerance where no penalty is given to errors
+cv is cross validation
+verbose means the higher it is, the more messages that are sen on the console
+
+Important: GridSearch may take time to finish depending on the computer, so reduce the number of parameters if needed
+"""
+
+from sklearn.svm import SVR
+from sklearn.model_selection import train_test_split, GridSearchCV
+
+#Function to print best hyperparamaters: 
+def print_best_params(gd_model):
+    param_dict = gd_model.best_estimator_.get_params()
+    model_str = str(gd_model.estimator).split('(')[0]
+    print("\n*** {} Best Parameters ***".format(model_str))
+    for k in param_dict:
+        print("{}: {}".format(k, param_dict[k]))
+    print()
+
+#test train split
+X_train, X_test, y_train, y_test = train_test_split(X_final, y_final, test_size = 0.33, random_state = 0 )
+
+#standard scaler (fit transform on train, fit only on test)
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train.astype(float))
+X_test= sc.transform(X_test.astype(float))
+
+###Challenge 1: SVR parameter grid###
+param_grid_svr = dict(kernel=[ 'linear', 'poly'],
+                     degree=[2],
+                     C=[600, 700, 800, 900],
+                     epsilon=[0.0001, 0.00001, 0.000001])
+svr = GridSearchCV(SVR(), param_grid=param_grid_svr, cv=5, verbose=3)
+
+
+#fit model
+svr = svr.fit(X_train,y_train.values.ravel())
+
+#print score
+print('\n\nsvr train score %.3f, svr test score: %.3f' % (
+svr.score(X_train,y_train),
+svr.score(X_test, y_test)))
+#print(svr.best_estimator_.get_params())
+
+print_best_params(svr)
