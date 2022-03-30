@@ -16,7 +16,7 @@ For example:
 python -m venv C:\Project\tutorial-linkedin-learning-python-working-with-predictive-analytics\venv
 ```
 
-The venv virtual environment will appear as a folder under Explore.
+The venv virtual environment will appear as a folder under VS Code's Explorer pane.
 
 Open the terminal afresh, and your directory should be prefixed with (venv) to indicate you are in the virtual environment.
 
