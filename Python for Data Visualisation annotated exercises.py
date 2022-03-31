@@ -367,11 +367,176 @@ interest_paid = df.loc[:, 'interest_paid'].values
 principal_paid = df.loc[:, 'principal_paid'].values
 
 """
-plot values on x and y axis
-"""
-
+# plot one line (x axis, y axis)
 plt.plot(month_number, interest_paid)
 
+# plot 2 lines on the same graph
+plt.plot(month_number, interest_paid)
+plt.plot(month_number, principal_paid)
+"""
+
+"""
+plt.style.available to choose figure style
+by default, plt.style.use('classic') is used
+"""
+
+"""
+# list different styles to choose from
+plt.style.available
+
+plt.style.use('fivethirtyeight')
+plt.plot(month_number, interest_paid)
+plt.plot(month_number, principal_paid)
+"""
+
+
+
+"""
+SET MARKER TYPE AND CHANGE COLOURS
+
+'.'   point marker
+','   pixel marker
+'o'   circle marker
+'v'   triangle_down marker
+'^'   triangle_up marker
+'<'   triangle_left marker
+'>'   triangle_right marker
+'s'   square marker
+'*'   star marker
+'+'   plus marker
+'x'   x marker
+
+'b'         blue
+'blue'      blue
+'g'         green
+'green'     green
+'r'         red
+'red'       red
+'c'         cyan
+'cyan'      cyan
+'m'         magneta
+'magneta'   magneta
+'y'         yellow
+'yellow'    yellow
+'k'         black
+'black'     black
+'w'         white
+'white'     white
+"""
+
+"""
+# add markers and increase their size, and set colours
+plt.plot(month_number, interest_paid, c = 'b', marker = '.', markersize = 10)
+plt.plot(month_number, principal_paid, c = 'g', marker = '.', markersize = 10)
+"""
+
+"""
+# set colours using hex strings
+plt.plot(month_number, interest_paid, c = '#00FF00', marker = '.', markersize = 10)
+plt.plot(month_number, principal_paid, c = '#FF0000', marker = '.', markersize = 10)
+"""
+
+"""
+# set colours using rgb tuples
+plt.plot(month_number, interest_paid, c = (0, 0, 0), marker = '.', markersize = 10)
+plt.plot(month_number, principal_paid, c = (0, 0, 1), marker = '.', markersize = 10)
+"""
+
+
+
+"""
+OBJECT-ORIENTATED
+
+previous scripting of plots is in the MATLAB-style
+below is the object-orientated style
+Note: most plots created are a mix
+"""
+
+"""
+fig, axes = plt.subplots(nrows = 1, ncols = 1)
+plt.plot(month_number, interest_paid, c = 'k') # MATLAB style
+axes.plot(month_number, principal_paid, c = 'b') # object orientated style
+"""
+
+
+"""
+PLOT TITLES, LABELS, AND AXIS LIMITS
+
+MATLAB-style
+set axis limits
+   plt.xlim(left = , right = )
+   plt.ylim(bottom = , top = )
+set axis labels
+   plt.xlabel('')
+   plt.ylabel('')
+set title
+   plt.title('')
+set axis label size
+   plt.xticks(fontsize = )
+   plt.yticks(fontsize = )
+
+OBJECT-ORIENTATED-style
+   axes.set_xlim(left = , right =)
+   axes.set_ylim(bottom = , top =)
+   axes.set_xlabel('')
+   axes.set_ylabel('')
+   axes.set_title('')
+   axes.tick_params(axis = 'x', labelsize = )
+   axes.tick_params(axis = 'y', labelsize = )
+"""
+
+"""
+# MATLAB style
+plt.plot(month_number, interest_paid, c = 'k')
+plt.plot(month_number, principal_paid, c = 'b')
+plt.xlim(left=1,right=70)
+plt.ylim(bottom=0,top=1000)
+plt.xticks(fontsize = 8)
+plt.yticks(fontsize = 8)
+plt.xlabel('Month', fontsize = 12)
+plt.ylabel('Dollars', fontsize = 12)
+plt.title('Interest and Principal Paid Each Month', fontsize = 16)
+"""
+
+"""
+# object-orientated style
+fig, axes = plt.subplots(nrows = 1, ncols = 1)
+axes.plot(month_number, interest_paid, c='k')
+axes.plot(month_number, principal_paid, c = 'b')
+axes.set_xlim(left = 1 , right = 70)
+axes.set_ylim(bottom = 0, top = 1000)
+axes.set_xlabel('Month', fontsize = 12)
+axes.set_ylabel('Dollars', fontsize = 12)
+axes.set_title('Interest and Principal Paid Each Month', fontsize = 16)
+axes.tick_params(axis = 'x', labelsize = 12)
+axes.tick_params(axis = 'y', labelsize = 12)
+"""
+
+
+
+"""
+GRIDLINES
+
+MATLAB-style
+   plt.grid()   adds vertical and horzontal gridlines
+   plt.grid(axis = 'y')   adds horizontal gridlines
+   plt.grid(axis = 'x')   adds vertical gridlines
+   plt.grid(
+       c = , # defines colour
+       alpha = # defines transparency 0 to 1 e.g. .3
+       linestyle = '-'
+   )
+
+object-orientated-style
+   axes.grid()
+   axes.grid(axis = 'y')
+   axes.grid(axis = 'x')
+   axes.grid(
+       c = 'g',
+       alpha = .3,
+       linestyle = '-'
+   )
+"""
 
 
 
@@ -385,10 +550,4 @@ plt.plot(month_number, interest_paid)
 
 
 
-
-
-
-
-
-
-
+# %%
