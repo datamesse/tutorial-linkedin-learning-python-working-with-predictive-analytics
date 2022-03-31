@@ -86,3 +86,9 @@ As per this [stack overflow question](https://stackoverflow.com/questions/487136
 From Visual Studio Code navigate to File > Preferences > Keyboard Shortcuts, then search for the command *workbench.action.terminal.clear*, and apply your keybinding, for example Ctrl + K.
 
 
+
+### Allow plotting to display within Visual Studio Code
+
+As per this [stack overflow question](https://stackoverflow.com/questions/49992300/python-how-to-show-graph-in-visual-studio-code-itself) add #%% to the top of the Python script, then click "Run Cell" to display visualisations.
+
+The process will trigger installation of ipykernel in your virtual environment.

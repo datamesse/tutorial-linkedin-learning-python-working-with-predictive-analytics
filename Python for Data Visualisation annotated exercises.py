@@ -1,3 +1,5 @@
+#%%
+
 """
 All of the code below is from the LinkedIn Learning course, Python: Working with Predictive Analytics by Michael Galarnyk and Madecraft
 https://www.linkedin.com/learning/python-for-data-visualization
@@ -43,7 +45,7 @@ print(df)
 
 
 """
-Option 2. Create your own dataframe as a NumPy array, which is more efficient than a Python list
+Option 2. Create your own dataframe as a NumPy array, which is more efficient to process than a Python list
 """
 
 """
@@ -235,13 +237,13 @@ df = df.rename(columns={
 })
 # print(df[:10])
 
-"""
+
 # Delete column using drop method
 df = df.drop(columns=['term'])
 
 # Delete column using del command
 del df['Repayment']
-"""
+
 
 
 
@@ -252,17 +254,141 @@ Note: whilst it is possible to sum all the vealues for each column using df.sum(
 this is not recommended as string columns will concatenate as a result
 """
 
+"""
 # sum entire column
 print(df['interest_paid'].sum())
-
-
-
-
-
-
+"""
 
 
 
 """
-MATPLOTLIB
+HANDLING MISSING DATA i.e. NaN Not a Number
+
+some functions will trigger an error or misrepresent it if there are missing values
+df.info() can be used to find NaN
+.isna() andd .isnull() can be used to find nnulls
+they are idential methods just with different names in Python
+in R programming, they are different things
+
+Note: you can use the - i.e. not operator to negate the filter
+i.e. show all rows that don't have NaN
+df.loc[-interest_missing,:]
 """
+
+"""
+interest_missing = df['interest_paid'].isna()
+print(df.loc[interest_missing,:])
+"""
+
+
+"""
+REMOVE OR FILL MISSING DATA
+
+data amputation
+backfilling and forwardfilling is common wheen you have time series data with missing values
+Note: generally not recommended to replace NaN with zero
+"""
+
+"""
+# from rows 30 to 39, drop rows that have any NaN values for any column
+df[30:40].dropna(how = 'any')
+
+# replace NaN with zero value
+df['interest_paid'][30:40].fillna(0)
+
+# replace NaN with the value from the next row a.k.a. "backfill"
+df['interest_paid'][30:40].fillna(method = 'bfill')
+
+# replace NaN with the value from the previous row a.k.a. "forwardfill"
+df['interest_paid'][30:40].fillna(method = 'ffill')
+
+# with domain knowledge, manually fill in the actual value
+interest_missing = df['interest_paid'].isna()
+df.loc[interest_missing, 'interest_paid'] = 93.24
+"""
+
+# linear interpolation, replace NaN with a linear model value
+interest_missing = df['interest_paid'].isna()
+df.loc[interest_missing, 'interest_paid'] = df['interest_paid'][30:40].interpolate(method = 'linear')
+
+# df.info()
+
+
+
+"""
+CONVERT PANDAS DATAFRAME TO NUMPY ARRAY OR DICTIONARY
+
+certain Python libraries prefer numpy arrays or dictionaries as inputs to their methods
+dictionaries are used to preserve the indices of the Pandas dataframe
+"""
+
+"""
+# Option 1. convert to NumPy array using .to_numpy()
+df.to_numpy()
+
+# Option 2. convert to NumPy array using .values()
+df.values
+
+# Option 3. convert to dictionary using .to_dict()
+df.to_dict()
+"""
+
+
+
+"""
+EXPORT PANDAS DATAFRAMES TO CSV AND EXCEL
+
+index = False means the dataframe's indexes won't be exported
+"""
+
+"""
+df.to_csv(path_or_buf='data/table_i702t60.csv', index=False)
+df.to_excel(excel_writer='data/table_i702t60.xlsx', index=False)
+"""
+
+
+"""
+DATA VISUALISATION USING MATPLOTLIB
+"""
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+"""
+columns/field values must first be set up as numpy arrays
+.loc converts it into a pandas series, then the .values converts that into a numpy array
+check the conversion worked using type(month_number)
+"""
+
+month_number = df.loc[:, 'Month'].values
+interest_paid = df.loc[:, 'interest_paid'].values
+principal_paid = df.loc[:, 'principal_paid'].values
+
+"""
+plot values on x and y axis
+"""
+
+plt.plot(month_number, interest_paid)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
