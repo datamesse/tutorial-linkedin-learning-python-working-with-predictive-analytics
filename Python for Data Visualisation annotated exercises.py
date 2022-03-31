@@ -540,7 +540,59 @@ object-orientated-style
 
 
 
+"""
+LEGENDS
 
+MATLAB-style
+   plt.legend() # legend is position is defaulted to a visually bad place, top right inside image
+   plt.legend(loc = 'center right') # legend is still positioned inside graph
+   plt.legend(loc = 1.02, 0) # legend can be moved off plotting area 1 ,  = rightmost part of graph, so 1.02 is off
+
+object-orientated-style
+   axes.legend()
+   axes.legend(loc = "center right")
+   axes.legend(loc = (1.02,0) )
+"""
+
+
+
+"""
+SAVE PLOT AS AN IMAGE
+
+by default, .savefig() crops the plotted image
+precede it with tight_layout() so it reajusts to include all elements
+
+MATLAB-style
+plt.tight_layout()
+plt.savefig('data/exampleplot.png', dpi = 300)
+
+object-orientated-style
+fig.tight_layout()
+fig.savefig('data/exampleplot.png', dpi = 300)
+"""
+
+
+
+"""
+BOXPLOT
+
+https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51
+"""
+
+df2 = pd.read_excel(filename, sheet_name='Sheet1')
+df2 = df2.rename(columns={
+   'Interest Paid': 'interest_paid',
+})
+interest_missing = df2['interest_paid'].isna()
+df2.loc[interest_missing, 'interest_paid'] = df2['interest_paid'][:].interpolate(method = 'linear')
+
+# boxplot using Matplotlib
+toyotasienna = df2.loc[df2['car_type']=='Toyota Sienna','interest_paid'].values
+vwgolfr = df2.loc[df2['car_type']=='VW Golf R','interest_paid'].values
+
+plt.boxplot([toyotasienna, vwgolfr], labels = ['Toyota Sienna', 'VW Golf R'])
+
+# continue from 2:13 in the video
 
 
 
