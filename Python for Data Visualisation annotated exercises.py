@@ -574,11 +574,25 @@ fig.savefig('data/exampleplot.png', dpi = 300)
 
 
 """
-BOXPLOT
+BOXPLOT  USING DIFFERENT LIBRARIES
 
 https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51
+
+Note: even if you are using the pandas way of creating boxplot, 
+you can still use matplotlib syntax to modify it
+e.g. removing titles using matplotlib syntax
+   plt.title('');
+   plt.suptitle('');
+
+Using Seaborn to create boxplots has these advantages over matplotlib
+ - close integration with pandas data structures
+ - dataset orientated API for examining relationships between multiple variables
+ - specialised support for using categorical variables to show observations or aggregate statistics
+ - concise control over matplotlib figure styling with several built-in themes
+ - tool for choosing colour palettes that faithfully reveal patterns in data
 """
 
+"""
 df2 = pd.read_excel(filename, sheet_name='Sheet1')
 df2 = df2.rename(columns={
    'Interest Paid': 'interest_paid',
@@ -586,14 +600,100 @@ df2 = df2.rename(columns={
 interest_missing = df2['interest_paid'].isna()
 df2.loc[interest_missing, 'interest_paid'] = df2['interest_paid'][:].interpolate(method = 'linear')
 
+
+
 # boxplot using Matplotlib
 toyotasienna = df2.loc[df2['car_type']=='Toyota Sienna','interest_paid'].values
 vwgolfr = df2.loc[df2['car_type']=='VW Golf R','interest_paid'].values
-
 plt.boxplot([toyotasienna, vwgolfr], labels = ['Toyota Sienna', 'VW Golf R'])
 
-# continue from 2:13 in the video
+# boxplot using pandas requires less code
+df2.boxplot(column = 'interest_paid', by = 'car_type')
 
+# boxplot using seaborn
+import seaborn as sns
+sns.boxplot(x = 'car_type', y = 'interest_paid', data = df2)
+"""
+
+
+
+"""
+HEATMAP USING SEABORN
+
+a confusion matrix is a table that is often used to describe the performance of an ML classification model
+i.e. it shows when predictions went wrong
+in the example below each column represents numbers 0 to 9, values as predictions for values 0 to 9
+e.g. 37 at topmost is trial 0, predicted the value of 0 37 times
+3 at the bottom left represents incorrectly predicting value of 8 (row) when actual is 1 (column)
+Note: this is just context as to where the data comes from, doesn't impact heatmap coding style
+
+Heatmaps can be made with pure matplotlib, but it is a tremendous amount to code
+"""
+
+"""
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+confusion = np.array([
+   [37, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+   [0, 39, 0, 0, 0, 0, 0, 0, 2, 0],
+   [0, 0, 41, 3, 0, 0, 0, 0, 0, 0],
+   [0, 0, 0, 44, 0, 0, 0, 0, 1, 0],
+   [0, 0, 0, 0, 37, 0, 0, 1, 0, 0],
+   [0, 0, 0, 0, 0, 46, 0, 0, 0, 2],
+   [0, 1, 0, 0, 0, 0, 51, 0, 0, 0],
+   [0, 0, 0, 1, 1, 0, 0, 46, 0, 0],
+   [0, 3, 1, 0, 0, 0, 0, 0, 44, 0],
+   [0, 0, 0, 0, 0, 1, 0, 0, 2, 44]
+])
+
+# gradient sequential blue colour map
+plt.figure(figsize = (6,6))
+sns.heatmap(
+   confusion,
+   annot = True,
+   cmap = 'Blues'
+)
+plt.ylabel('Actual label')
+plt.xlabel('Predicted label')
+"""
+
+
+
+"""
+HISTOGRAM USING MATPLOTLIB
+
+series of intervals created and counting how many values fall into each interval
+intervals are typically of equal size, but do not need to be
+"""
+
+"""
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# histogram all data with style applied for readability
+df['interest_paid'].hist()
+plt.style.use('seaborn')
+# plt.xticks(rotation = 90) # note that if you try customising after applying a style, the style is cancelled out
+
+# visualise subset of data
+interest_paid_filtered = df.loc[:, 'interest_paid'] <= 210
+df.loc[interest_paid_filtered, 'interest_paid'].hist(bins = 20, edgecolor='black')
+"""
+
+
+
+"""
+SUBPLOTS
+
+comparing data subsets sidde-by-side
+"""
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 
