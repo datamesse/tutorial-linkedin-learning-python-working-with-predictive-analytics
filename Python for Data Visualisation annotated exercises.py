@@ -102,8 +102,160 @@ print(df)
 LOAD CSV AND EXCEL FILES USING PANDAS
 """
 
+"""
 import pandas as pd
-data = pd.read_excel (r'nal_marketplace.xlsx', sheet_name='FactSales')
+filename = 'https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/car_financing.csv'
+df = pd.read_csv(filename)
+print(df[:10])
+"""
+
+import pandas as pd
+filename = 'https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/car_financing.xlsx'
+df = pd.read_excel (filename, sheet_name='Sheet1')
+# print(df[:10])
+
+
+
+"""
+BASIC OPERATIONS USING PANDAS
+"""
+
+"""
+# Examine the head and tail of dataset
+print(df.head(10))
+print(df.tail(10))
+"""
+
+"""
+# Check column data types
+print(df.dtypes)
+"""
+
+"""
+# Check number of rows and columns
+print(df.shape)
+"""
+
+"""
+# check for non-null values, in this case Interest Paid column has 1 null value
+print(df.info())
+"""
+
+
+
+"""
+SLICING USING PANDAS
+when interested in smalller subset of the data
+Note: if single square brackets are used i.e. [ ], it is a Pandas series, not a Pandas dataframe
+A Pandas series cannot have columns specified
+Define as a Pandas dataframe by using double square brackets [[ ]]
+
+Series can be used if you know the start and end index of your selection
+
+Best practice for selecting golumns is using the .loc attribute
+allows column selection, indexing, and data slicing
+"""
+
+"""
+# select first 10 rows of specific column for Pandas dataframe
+print(df[['car_type']].head(10))
+
+# select first 10 rows of 2 specific columns
+print(df[['car_type', 'Principal Paid']].head(10))
+
+# check the dataframe's type e.g. if it is a Pandas dataframe
+print(type(df[['car_type', 'Principal Paid']].head(10))) # this returns as Pandas dataframe
+print(type(df['car_type'].head(10))) # this returns as a Pandas series
+
+# select first 10 rows of specific column for Pandas series
+print(df['car_type'][0:10])
+
+# select all rows and specific column using .loc for Pandas dataframe
+print(df.loc[:, ['car_type']])
+
+# select all rows and specific column using .loc for Pandas series
+print(df.loc[:, 'car_type'])
+"""
+
+
+"""
+FILTERING USING PANDAS
+
+combining operators
+&   and
+|   or
+^   exclusive or
+~   not
+"""
+
+"""
+# using .value_counts to get a count grouped on column values
+print(df['car_type'].value_counts)
+
+# create filter as binary check of every row to meet condition, result is list of True and False values
+car_filter = df['car_type']=='Toyota Sienna'
+print(car_filter)
+
+# apply filter to the dataframe IMPORTANT: the original dataframe is unaffected because it isn't an assigned change
+print(df[car_filter])
+
+# alternative to applying filter to the dataframe is to retrieve all columns of filter
+print(df.loc[car_filter, :])
+
+# overwrite the existing dataframe with the filtered dataframe
+car_filter = df['car_type']=='Toyota Sienna'
+df = df.loc[car_filter, :]
+
+interest_filter = df['interest_rate']==0.0702
+df = df.loc[interest_filter, :]
+"""
+
+# shorter version of the above
+car_filter = df['car_type']=='Toyota Sienna'
+interest_filter = df['interest_rate']==0.0702
+df = df.loc[car_filter & interest_filter, :]
+
+
+
+"""
+RENAMING & REMOVING COLUMNS USING PANDAS
+
+Note: the List replacement method requires full list of names, but is prone to error
+List replacement is just providing the full list of names as an array df.columns = ['month','starting_balance', etc...]
+"""
+
+"""
+Renaming columns using dictionary substitution
+"""
+df = df.rename(columns={
+   'Starting Balance': 'starting_balance',
+   'Interest Paid': 'interest_paid',
+   'Principal Paid': 'principal_paid',
+   'New Balance': 'new_balance'
+})
+# print(df[:10])
+
+"""
+# Delete column using drop method
+df = df.drop(columns=['term'])
+
+# Delete column using del command
+del df['Repayment']
+"""
+
+
+
+"""
+AGGREGATE FUNCTIONS
+
+Note: whilst it is possible to sum all the vealues for each column using df.sum() by itself,
+this is not recommended as string columns will concatenate as a result
+"""
+
+# sum entire column
+print(df['interest_paid'].sum())
+
+
 
 
 
