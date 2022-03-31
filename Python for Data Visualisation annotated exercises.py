@@ -689,17 +689,31 @@ df.loc[interest_paid_filtered, 'interest_paid'].hist(bins = 20, edgecolor='black
 SUBPLOTS
 
 comparing data subsets sidde-by-side
+
+HITTING A " KeyError(f"{not_found} not in index")" ERROR, CAN'T FIGURE IT OUT
+ENDING STUDY HERE, AS I GOT WHAT I NEED ANYWAY
 """
 
+"""
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+# this dataset is comprised of values tht combine into a set of images
+filename3 = 'https://raw.githubusercontent.com/datamesse/tutorial-linkedin-learning-python-working-with-predictive-analytics/main/data/digitsDataset.csv'
+df3 = pd.read_csv(filename3)
 
 
 
-
-
-
+# how to visualise 1 image from the dataset
+# get column names for pixel intensity values
+# retrieves all columns except last column, which is the label
+pixel_colnames = df3.columns[:-1]
+# 0 is the first image from the dataset
+image_values = df.loc[0, pixel_colnames].values
+# as the dataset is stored in as a single array (not how its meant to be viewed), it is reshaped to be viewable as 8 x 8 grid
+# use .imshow() method to visualise the 8 x 8 grid
+plt.imshow(image_values.reshape(8,8), cmap = 'gray')
+"""
 
 # %%
