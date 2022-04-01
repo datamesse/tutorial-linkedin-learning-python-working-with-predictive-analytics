@@ -1,5 +1,4 @@
-# https://towardsdatascience.com/introduction-to-hierarchical-time-series-forecasting-part-ii-e73dfd3de86b
-
+#%%
 
 
 """
@@ -30,14 +29,15 @@ import matplotlib.pyplot as plt
 data = pd.read_excel (r'C:\Archive\Project\tutorial-linkedin-learning-python-working-with-predictive-analytics\data\international_marketplace.xlsx', sheet_name='FactSales')
 df = pd.DataFrame(data, columns= ['OrderDate','ProductID','CityID','Profit'])
 
+print(df)
 
 
-
-
-dataset.set_index('OrderDate')
-dataset.index.freq = 'MS'
+"""
+# dataset.set_index('OrderDate')
+# dataset.index.freq = 'MS'
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
-model = ExponentialSmoothing(dataset['Profit'],trend='mul',seasonal='mul',seasonal_periods=12).fit()
+model = ExponentialSmoothing(df['Profit'],trend='mul',seasonal='mul',seasonal_periods=12).fit()
 range = pd.date_range('01-01-2024', periods=12, freq='MS')
 predictions = model.forecast(12)
 predictions_range = pd.DataFrame({'Profit':predictions,'Order Date':range})
+"""

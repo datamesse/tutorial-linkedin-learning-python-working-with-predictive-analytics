@@ -1,7 +1,7 @@
 #%%
 
 """
-All of the code below is from the LinkedIn Learning course, Python: Working with Predictive Analytics by Michael Galarnyk and Madecraft
+All of the code below is from the LinkedIn Learning course, Python for Data Visualization by Michael Galarnyk and Madecraft
 https://www.linkedin.com/learning/python-for-data-visualization
 
 I have annotated it with additional notes for my own personal learning.
@@ -348,7 +348,7 @@ df.to_excel(excel_writer='data/table_i702t60.xlsx', index=False)
 
 
 """
-DATA VISUALISATION USING MATPLOTLIB
+DATA VISUALISATION USING MATPLOTLIB LINE CHART
 """
 
 import pandas as pd
