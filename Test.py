@@ -89,7 +89,7 @@ dfx = df.loc[test_filter, :]
 
 
 
-"""
+
 import pandas as pd
 import numpy as np
 
@@ -107,11 +107,22 @@ df = df.drop(columns=['OrderDate','Profit'])
 df.drop_duplicates(keep='first', inplace = True)
 
 
-print(df[:10])
-df.info()
+df.set_index('YearMonth')
+df.index.freq = 'MS'
+
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+model = ExponentialSmoothing(df['MonthlyProfit'],trend='mul',seasonal='mul',seasonal_periods=12).fit()
+range = pd.date_range('01-01-2024', periods=12, freq='MS')
+predictions = model.forecast(12)
+predictions_range = pd.DataFrame({'MonthlyProfit':predictions,'YearMonth':range})
+
+# print(predictions_range)
+# print(predictions_range.info)
+# print(df)
+
+predictions_range.plot(figsize=(12,8))
+
 """
-
-
 import pandas as pd
 import numpy as np
 
@@ -130,9 +141,50 @@ df.drop_duplicates(keep='first', inplace = True)
 print(df[:10])
 df.info()
 
-import matplotlib.pyplot as plt
 df.index.freq = 'MS'
 
-df.plot(figsize=(12,8))
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+model = ExponentialSmoothing(df['DailyProfit'],trend='mul',seasonal='mul',seasonal_periods=24).fit()
+range = pd.date_range('01-01-2024', periods=12, freq='MS')
+predictions = model.forecast(12)
+predictions_range = pd.DataFrame({'DailyProfit':predictions,'OrderDate':range})
+
+print(predictions_range)
+"""
+
+
+"""
+# MULTIPLE LINEAR REGRESSSION
+X_num = data[['OrderDate']].copy()
+X_final = pd.concat([X_num], axis = 1)
+y_final = data[['Profit']].copy()
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X_final, y_final, test_size = 0.33, random_state = 0 )
+
+from sklearn.preprocessing import StandardScaler
+s_scaler = StandardScaler()
+X_train = s_scaler.fit_transform(X_train.astype(float))
+X_test= s_scaler.transform(X_test.astype(float))
+
+from sklearn.linear_model import LinearRegression
+
+lr = LinearRegression().fit(X_train,y_train)
+y_train_pred = lr.predict(X_train)
+y_test_pred = lr.predict(X_test)
+
+# getting the ccoefficients and intercept
+print("lr.coef_: {}".format(lr.coef_))
+print("lr.intercept_: {}".format(lr.intercept_))
+print('lr train score %.3f, lr test score: %.3f' % (
+lr.score(X_train,y_train),
+lr.score(X_test, y_test)))
+
+"""
+
+
+
+
 
 # %%
