@@ -64,6 +64,8 @@ profit = df.loc[:, 'Profit'].values
 plt.plot_date(month, profit)
 """
 
+
+"""
 import pandas as pd
 import numpy as np
 
@@ -71,19 +73,66 @@ data = pd.read_excel (r'C:\Archive\Project\tutorial-linkedin-learning-python-wor
 df = pd.DataFrame(data, columns= ['OrderDate','ProductID','Profit'])
 df.set_index('OrderDate')
 
-# create year-month column, and total column by year-month and ProductID
+# create YearMonth column, and total column by YearMonth and ProductID
 df['YearMonth'] = df['OrderDate'].dt.to_period("M")
 groupby_product = df.groupby(['ProductID','YearMonth'])
 df['MonthlyProfitByProduct'] = groupby_product['Profit'].transform(np.sum)
-# remove OrderDate and Profit column so duplicate rows (of Month Year) become evident
-df = df.drop(columns=['OrderDate,','Profit'])
+# remove OrderDate and Profit column so duplicate rows (of YearMonth and MonthlyProfitByProduct) becomes evident
+# .duplicated() checks if entire row's values match a previous row, and returns True if the case except for the first occurrence
+df = df.drop(columns=['OrderDate','Profit'])
+df.drop_duplicates(keep='first', inplace = True)
 
 
 test_filter = df['ProductID']==1574
 dfx = df.loc[test_filter, :]
+"""
 
-print(dfx[:10])
-dfx.info()
 
+
+"""
+import pandas as pd
+import numpy as np
+
+data = pd.read_excel (r'C:\Archive\Project\tutorial-linkedin-learning-python-working-with-predictive-analytics\data\international_marketplace.xlsx', sheet_name='FactSales', parse_dates = True)
+df = pd.DataFrame(data, columns= ['OrderDate','Profit'])
+df.set_index('OrderDate')
+
+# create YearMonth column, and total column by YearMonth
+df['YearMonth'] = df['OrderDate'].dt.to_period("M")
+groupby = df.groupby(['YearMonth'])
+df['MonthlyProfit'] = groupby['Profit'].transform(np.sum)
+# remove OrderDate and Profit column so duplicate rows (of YearMonth and MonthlyProfit) becomes evident
+# .duplicated() checks if entire row's values match a previous row, and returns True if the case except for the first occurrence
+df = df.drop(columns=['OrderDate','Profit'])
+df.drop_duplicates(keep='first', inplace = True)
+
+
+print(df[:10])
+df.info()
+"""
+
+
+import pandas as pd
+import numpy as np
+
+data = pd.read_excel (r'C:\Archive\Project\tutorial-linkedin-learning-python-working-with-predictive-analytics\data\international_marketplace.xlsx', sheet_name='FactSales', parse_dates = True)
+df = pd.DataFrame(data, columns= ['OrderDate','Profit'])
+df.set_index('OrderDate')
+
+# create DailyProfit
+groupby = df.groupby(['OrderDate'])
+df['DailyProfit'] = groupby['Profit'].transform(np.sum)
+# remove OrderDate and Profit column so duplicate rows (of DailyProfit) becomes evident
+# .duplicated() checks if entire row's values match a previous row, and returns True if the case except for the first occurrence
+df = df.drop(columns=['Profit'])
+df.drop_duplicates(keep='first', inplace = True)
+
+print(df[:10])
+df.info()
+
+import matplotlib.pyplot as plt
+df.index.freq = 'MS'
+
+df.plot(figsize=(12,8))
 
 # %%
