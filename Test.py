@@ -1,5 +1,6 @@
 #%%
 
+from cProfile import label
 import pandas as pd
 import numpy as np
 
@@ -19,9 +20,12 @@ df.set_index('YearMonth')
 df.index.freq = 'MS'
 
 
+"""
+# VISUALISATION OF EXISTING DATA
 
 # period YearMonth is converted to a string, and sufffixed with -01 to be converted to be a date type
 # I did this because I am unable to figure out how to plot period object YearMonth on the x-axis, if that's possible.
+
 import matplotlib.pyplot as plt
 
 df['YearMonth'] = pd.to_datetime(df['YearMonth'].astype(str) + '-01')
@@ -32,9 +36,31 @@ plt.xticks(fontsize = 8)
 plt.yticks(fontsize = 8)
 plt.xlabel('Year-Month', fontsize = 10)
 plt.ylabel('Millions $', fontsize = 10)
+"""
+
+
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+model = ExponentialSmoothing(df['MonthlyProfit'],trend='mul',seasonal='mul',seasonal_periods=12).fit()
+range = pd.date_range('01-01-2024', periods=12, freq='MS')
+predictions = model.forecast(12)
+predictions_range = pd.DataFrame({'MonthlyProfit':predictions,'YearMonth':range})
 
 
 
-# print(df)
-# print(df.info())
+import matplotlib.pyplot as plt
+
+yearMonthForecast = predictions_range.loc[:, 'YearMonth'].values
+monthlyProfitForecast = predictions_range.loc[:, 'MonthlyProfit'].values
+df['YearMonth'] = pd.to_datetime(df['YearMonth'].astype(str) + '-01')
+yearMonth = df.loc[:, 'YearMonth'].values
+monthlyProfit = df.loc[:, 'MonthlyProfit'].values
+plt.plot(yearMonth, monthlyProfit, c = 'b', marker = '.', markersize = 10)
+plt.plot(yearMonthForecast, monthlyProfitForecast, c = 'orange', marker = '.', markersize = 10)
+plt.xticks(fontsize = 8)
+plt.yticks(fontsize = 8)
+plt.xlabel('Year-Month', fontsize = 10)
+plt.ylabel('Millions $', fontsize = 10)
+
+
+
 # %%
